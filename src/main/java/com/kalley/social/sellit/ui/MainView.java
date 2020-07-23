@@ -1,9 +1,8 @@
 package com.kalley.social.sellit.ui;
 
-import com.kalley.social.sellit.backend.entity.ProductType;
 import com.kalley.social.sellit.backend.service.ProductTypeService;
+import com.kalley.social.sellit.ui.entity.productType.ProductTypeGrid;
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.value.ValueChangeMode;
@@ -16,7 +15,7 @@ public class MainView extends VerticalLayout {
 	private ProductTypeService prodTypeService;
 
 	// Will be changed soon
-	private Grid<ProductType> grid = new Grid<>(ProductType.class);
+	private ProductTypeGrid grid = new ProductTypeGrid();
 	private TextField filterText = new TextField();
 	
 	/**
@@ -27,12 +26,9 @@ public class MainView extends VerticalLayout {
     	addClassName("main-view");
     	setSizeFull();
     	add(createFilter(), createGrid());
-    }	
+    }
 
 	private Component createGrid() {
-		grid.addClassName("product-type-grid");
-		grid.setSizeFull();
-		grid.setColumns("name");
 		grid.setItems(prodTypeService.findAll());
 		return grid;
 	}
