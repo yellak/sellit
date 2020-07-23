@@ -39,6 +39,14 @@ public class ProductTypeService {
 		return prodTypeRepo.findAll();
 	}
 	
+	public List<ProductType> findAll(String name) {
+		if (name == null || name.isEmpty()) {
+			return prodTypeRepo.findAll();
+		} else {
+			return prodTypeRepo.search(name);
+		}
+	}
+	
 	public long count() {
 		return prodTypeRepo.count();
 	}
